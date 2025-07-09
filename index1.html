@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBit Countdown</title>
+    <style>
+        #bg-black {
+            background-color: black;
+        }
+
+        #count {
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #watch-img {
+            height: 500px;
+            width: 500px;
+        }
+
+        .color-box {
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-weight: bold;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .purchasebtn{
+            background-color: orange;
+            color:black;
+            font-style: bold;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <table width="100%" height="70px" id="bg-black">
+        <tr>
+            <td align="center">
+                <img src="images/Amazon-Emblem.jpg" alt="amazon-logo" height="60px" width="60px">
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+        <tr>
+            <td align="left" style="padding: 12px;">
+                <div class="image-container" id="main-watch">
+                    <img src="images/redmainproject5.png" alt="watch-img1" id="watch-img">
+                    <div id="count">0</div>
+                </div>
+            </td>
+            <td align="left">
+                <h1><b>FitBit 19 - The Smartest Watch</b></h1>
+                <p>the best watch ever!</p>
+                <div id="watch-color">
+                    <div class="color-box">
+                        <button><img src="images/blueproject3.png" id="watch-blue" alt="watch-blue" height="50px" width="50px"></button>
+                    </div>
+                    <div class="color-box">
+                        <button><img src="images/blackproject4.png" id="watch-black" alt="watch-black" height="50px" width="50px"></button>
+                    </div>
+                    <div class="color-box">
+                        <button><img src="images/pinkproject2.png" id="watch-pink" alt="watch-pink" height="50px" width="50px"></button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="padding: 12px;">
+                <button id="count-btn">Count</button>
+                <button id="clock-btn">Clock</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button class="purchasebtn">CLICK FOR PURCHASE</button>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        let countdown = 60;
+        let manualCount = 0;
+        let interval = null;
+
+        const btnClock = document.getElementById("clock-btn");
+        const btnCount = document.getElementById("count-btn");
+        const countElement = document.getElementById("count");
+        const watchImg = document.getElementById("watch-img");
+
+        // Color Change Functions
+        document.getElementById("watch-blue").addEventListener("click", function () {
+            watchImg.src = "images/blueproject3.png";
+        });
+
+        document.getElementById("watch-black").addEventListener("click", function () {
+            watchImg.src = "images/blackproject4.png";
+        });
+
+        document.getElementById("watch-pink").addEventListener("click", function () {
+            watchImg.src = "images/pinkproject2.png";
+        });
+
+        // Count button functionality
+        btnCount.addEventListener("click", function () {
+            manualCount++;
+            countElement.textContent = manualCount;
+        });
+
+        // Clock button functionality
+        btnClock.addEventListener("click", function () {
+            clearInterval(interval);
+            countdown = 60;
+            interval = setInterval(function () {
+                countElement.textContent = countdown;
+                countdown--;
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    countElement.textContent = "good!";
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+
+
+      
